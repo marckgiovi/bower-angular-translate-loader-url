@@ -52,15 +52,12 @@ function $translateUrlLoader($q, $http) {
 
     var requestParams = {};
 
-    requestParams[options.queryParameter || 'lang'] = options.key;
-
     return $http(angular.extend({
       url: options.url,
-      params: requestParams,
       method: 'GET'
     }, options.$http))
       .then(function(result) {
-        return result.data;
+        return result.data.translations;
       }, function () {
         return $q.reject(options.key);
       });
